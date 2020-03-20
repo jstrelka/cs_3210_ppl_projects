@@ -45,4 +45,11 @@ seqValid s
     | queensSeq s < 2 = True
     | queensSeq s >= 2 = False
 
-main = print(seqValid "-Q-Q" )
+-- TODO 08/17
+rowsValid :: Board -> Bool
+rowsValid b
+    | length b == 0 = True
+    | seqValid (b!!((length b) - 1)) == False = False
+    | otherwise = rowsValid(init b)
+
+main = print(rowsValid ["-Q--","Q---","--QQ","----"] )

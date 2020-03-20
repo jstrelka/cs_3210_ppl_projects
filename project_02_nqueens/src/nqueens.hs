@@ -41,11 +41,16 @@ queensBoard b = length( filter (=='Q') (unwords b))
 
 -- TODO 07/17
 seqValid :: Seq -> Bool
-seqValid s = False
+seqValid s
+    | queensSeq s < 2 = True
+    | queensSeq s >= 2 = False
 
 -- TODO 08/17
 rowsValid :: Board -> Bool
-rowsValid b = False
+rowsValid b
+    | length b == 0 = True
+    | seqValid (b!!((length b) - 1)) == False = False
+    | otherwise = rowsValid(init b)
 
 -- TODO 09/17
 colsValid :: Board -> Bool
