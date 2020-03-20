@@ -41,6 +41,8 @@ queensBoard b = length( filter (=='Q') (unwords b))
 
 -- TODO 07/17
 seqValid :: Seq -> Bool
-seqValid s = False
+seqValid s
+    | queensSeq s < 2 = True
+    | queensSeq s >= 2 = False
 
-main = print(queensBoard ["Q---", "--Q-", "--Q-", "----"] )
+main = print(seqValid "-Q-Q" )
