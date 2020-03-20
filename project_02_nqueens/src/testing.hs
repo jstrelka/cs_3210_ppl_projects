@@ -14,7 +14,6 @@ setup :: Int -> Board
 setup n
     | n < 4 = [ln | ln <- replicate 4 (replicate 4 '-')]
     | otherwise = [ln | ln <- replicate n (replicate n '-')]
---setup n = [ln | ln <- replicate n (replicate n '-')]
 
 -- TODO 02/17
 rows :: Board -> Int
@@ -26,10 +25,22 @@ cols b
     | length(nub b) == 1 = length b
     | otherwise = 0
 
---    | length b == 1 = rows b
---    | b!!0 == b!!((length b) - 1) = cols(init b)
---    | otherwise = 0
-    
+-- TODO 04/17
+size :: Board -> Int
+size b
+    | cols b == rows b = rows b
+    | otherwise = 0
 
+-- TODO 05/17
+queensSeq :: Seq -> Int
+queensSeq s = length(filter (=='Q') s )
 
-main = print(cols ["------","------","------","------","------","------"])
+-- TODO 06/17
+queensBoard :: Board -> Int
+queensBoard b = length( filter (=='Q') (unwords b))
+
+-- TODO 07/17
+seqValid :: Seq -> Bool
+seqValid s = False
+
+main = print(queensBoard ["Q---", "--Q-", "--Q-", "----"] )

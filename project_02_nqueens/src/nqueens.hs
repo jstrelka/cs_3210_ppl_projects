@@ -27,15 +27,17 @@ cols b
 
 -- TODO 04/17
 size :: Board -> Int
-size b = 0
+size b
+    | cols b == rows b = rows b
+    | otherwise = 0
 
 -- TODO 05/17
 queensSeq :: Seq -> Int
-queensSeq s = 0
+queensSeq s = length(filter (=='Q') s )
 
 -- TODO 06/17
 queensBoard :: Board -> Int
-queensBoard b = 0
+queensBoard b = length( filter (=='Q') (unwords b))
 
 -- TODO 07/17
 seqValid :: Seq -> Bool
