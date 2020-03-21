@@ -85,7 +85,7 @@ secDiagIndices b p
 
 -- TODO 13/17
 allSecDiagIndices :: Board -> [[ (Int, Int) ]]
-allSecDiagIndices b = [[]]
+allSecDiagIndices b = [ secDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
 
 -- TODO 14/17
 secDiag :: Board -> [Seq]

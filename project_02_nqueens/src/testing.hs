@@ -81,5 +81,15 @@ allMainDiagIndices b = [ mainDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
 mainDiag :: Board -> [Seq]
 mainDiag b = [ lst | x <- [0 .. ((diagonals b) - 1)], let lst = [ a | let y = mainDiagIndices b x, z <- [0 .. ((length y) - 1)], let a = (b!!(fst (y!!z)))!!(snd (y!!z))] ]
 
+secDiagIndices :: Board -> Int -> [ (Int, Int) ]
+secDiagIndices b p
+  | p < n = [ (p - q, q) | q <- [0..p] ]
+  | otherwise = [ (p - (n - 1 - q), n - 1 - q) | q <- [2 * (n - 1) - p, 2 * (n - 1) - p - 1..0] ]
+  where n = size b
 
-main = print(mainDiag (setup 5))
+-- TODO 13/17
+allSecDiagIndices :: Board -> [[ (Int, Int) ]]
+allSecDiagIndices b = [ secDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
+
+
+main = print(allSecDiagIndices (setup 5))
