@@ -129,6 +129,6 @@ solve b
     where i = nextRow b
 
 main = do
-  let b = setup 6
+  let b = setup 5
   let solution = [ solution | solution <- solve b ]
   print (solution)
