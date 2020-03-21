@@ -59,7 +59,7 @@ rowsValid b
 -- TODO 09/17
 colsValid :: Board -> Bool
 colsValid b
-    | size b == 1 = True
+    | size b == 0 = True
     | length [ i | i <- [0 .. ((length (b!!0)) - 1)], j <- [1 ..  ((size b) - 1)], (b!!0)!!i == 'Q', (b!!0)!!i == (b!!j)!!i ] > 0 = False
     | otherwise = colsValid (tail b)
 
@@ -97,7 +97,14 @@ secDiag b = [ lst | x <- [0 .. ((diagonals b) - 1)], let lst = [ a | let y = sec
 
 -- TODO 15/17
 diagsValid :: Board -> Bool
-diagsValid b = False
+diagsValid b
+    | length ([ md | let i = mainDiag b, j <- [0 .. ((length i) - 1)], let l = i!!j, length(filter (=='Q') l) > 1, let md = l]) > 0 = False
+    | length ([ md | let i = secDiag b, j <- [0 .. ((length i) - 1)], let l = i!!j, length(filter (=='Q') l) > 1, let md = l]) > 0 = False
+    | otherwise = True
+
+-- TODO 16/17
+valid :: Board -> Bool
+valid b = False
 
 
-main = print(secDiag (setup 4))
+main = print(diagsValid ["Q---","--Q-","-Q--","---Q"] )

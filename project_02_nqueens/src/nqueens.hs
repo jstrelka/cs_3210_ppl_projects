@@ -93,7 +93,10 @@ secDiag b = [ lst | x <- [0 .. ((diagonals b) - 1)], let lst = [ a | let y = sec
 
 -- TODO 15/17
 diagsValid :: Board -> Bool
-diagsValid b = False
+diagsValid b
+    | length ([ md | let i = mainDiag b, j <- [0 .. ((length i) - 1)], let l = i!!j, length(filter (=='Q') l) > 1, let md = l]) > 0 = False
+    | length ([ md | let i = secDiag b, j <- [0 .. ((length i) - 1)], let l = i!!j, length(filter (=='Q') l) > 1, let md = l]) > 0 = False
+    | otherwise = True
 
 -- TODO 16/17
 valid :: Board -> Bool
