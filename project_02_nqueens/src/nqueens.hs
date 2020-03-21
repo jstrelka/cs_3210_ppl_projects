@@ -108,7 +108,10 @@ valid b
 
 -- TODO 17/17 (¡Phew!)
 solved :: Board -> Bool
-solved b = False
+solved b
+    | valid b == False = False
+    | (size b) /= (queensBoard b) = False
+    | otherwise = True
 
 setQueenAt :: Board -> Int -> [Board]
 setQueenAt b i = do

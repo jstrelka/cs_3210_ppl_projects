@@ -110,5 +110,11 @@ valid b
     | diagsValid b == False = False
     | otherwise = True
 
+-- TODO 17/17 (¡Phew!)
+solved :: Board -> Bool
+solved b
+    | valid b == False = False
+    | (size b) /= (queensBoard b) = False
+    | otherwise = True
 
-main = print(valid ["Q---","--Q-","-Q--","---Q"] )
+main = print(solved ["Q---","--Q-","----","----"] )
