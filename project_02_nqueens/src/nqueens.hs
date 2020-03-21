@@ -89,7 +89,7 @@ allSecDiagIndices b = [ secDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
 
 -- TODO 14/17
 secDiag :: Board -> [Seq]
-secDiag b = []
+secDiag b = [ lst | x <- [0 .. ((diagonals b) - 1)], let lst = [ a | let y = secDiagIndices b x, z <- [0 .. ((length y) - 1)], let a = (b!!(fst (y!!z)))!!(snd (y!!z))] ]
 
 -- TODO 15/17
 diagsValid :: Board -> Bool

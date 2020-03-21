@@ -91,5 +91,13 @@ secDiagIndices b p
 allSecDiagIndices :: Board -> [[ (Int, Int) ]]
 allSecDiagIndices b = [ secDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
 
+-- TODO 14/17
+secDiag :: Board -> [Seq]
+secDiag b = [ lst | x <- [0 .. ((diagonals b) - 1)], let lst = [ a | let y = secDiagIndices b x, z <- [0 .. ((length y) - 1)], let a = (b!!(fst (y!!z)))!!(snd (y!!z))] ]
 
-main = print(allSecDiagIndices (setup 5))
+-- TODO 15/17
+diagsValid :: Board -> Bool
+diagsValid b = False
+
+
+main = print(secDiag (setup 4))
