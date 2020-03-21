@@ -75,7 +75,7 @@ allMainDiagIndices b = [ mainDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
 
 -- TODO 12/17
 mainDiag :: Board -> [Seq]
-mainDiag b = []
+mainDiag b = [ lst | x <- [0 .. ((diagonals b) - 1)], let lst = [ a | let y = mainDiagIndices b x, z <- [0 .. ((length y) - 1)], let a = (b!!(fst (y!!z)))!!(snd (y!!z))] ]
 
 secDiagIndices :: Board -> Int -> [ (Int, Int) ]
 secDiagIndices b p
