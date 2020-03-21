@@ -67,5 +67,18 @@ colsValid b
 diagonals :: Board -> Int
 diagonals b = (2 * (size b) - 1)
 
+mainDiagIndices :: Board -> Int -> [ (Int, Int) ]
+mainDiagIndices b p
+  | p < n = [ (n - 1 - qr, q) | q <- [0..p] | qr <- [p,p-1..0] ]
+  | otherwise = [ (q, (n - 1 - qr)) | q <- [0..2 * (n - 1) - p] | qr <- [2 * (n - 1) - p,2 * (n - 1) - p - 1..0] ]
+  where n = size b
 
-main = print(diagonals ["-Q---","Q----","--QQ-","---Q-","-----"] )
+-- TODO 11/17
+allMainDiagIndices :: Board -> [[ (Int, Int) ]]
+allMainDiagIndices b = [ mainDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
+
+-- TODO 12/17
+mainDiag :: Board -> [Seq]
+mainDiag b = []
+
+main = print(allMainDiagIndices (setup 4))

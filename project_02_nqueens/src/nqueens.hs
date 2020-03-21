@@ -71,7 +71,7 @@ mainDiagIndices b p
 
 -- TODO 11/17
 allMainDiagIndices :: Board -> [[ (Int, Int) ]]
-allMainDiagIndices b = [[]]
+allMainDiagIndices b = [ mainDiagIndices b n| n <- [0 .. ((diagonals b) -1)] ]
 
 -- TODO 12/17
 mainDiag :: Board -> [Seq]
