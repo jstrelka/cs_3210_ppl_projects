@@ -1,8 +1,11 @@
 {-# LANGUAGE ParallelListComp #-}
 
+-- Author(s): Justin Strelka
+-- Date: 3/21/2020
+-- Time Taken: estimated 25 HRS
+
 -- CS 3210 - Principles of Programming Languages - Spring 2020
 -- Programming Assignment 02 - The N-queens Problem
--- Author(s):
 
 import Data.List
 
@@ -24,10 +27,6 @@ cols :: Board -> Int
 cols b 
     | length(nub (map length b)) == 1 = length b
     | otherwise = 0
-
----cols b
----    | length(nub b) == 1 = length b
----    | otherwise = 0
 
 -- TODO 04/17
 size :: Board -> Int
