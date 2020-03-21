@@ -104,7 +104,11 @@ diagsValid b
 
 -- TODO 16/17
 valid :: Board -> Bool
-valid b = False
+valid b
+    | rowsValid b == False = False
+    | colsValid b == False = False
+    | diagsValid b == False = False
+    | otherwise = True
 
 
-main = print(diagsValid ["Q---","--Q-","-Q--","---Q"] )
+main = print(valid ["Q---","--Q-","-Q--","---Q"] )

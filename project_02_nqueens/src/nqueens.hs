@@ -100,7 +100,11 @@ diagsValid b
 
 -- TODO 16/17
 valid :: Board -> Bool
-valid b = False
+valid b
+    | rowsValid b == False = False
+    | colsValid b == False = False
+    | diagsValid b == False = False
+    | otherwise = True
 
 -- TODO 17/17 (¡Phew!)
 solved :: Board -> Bool
