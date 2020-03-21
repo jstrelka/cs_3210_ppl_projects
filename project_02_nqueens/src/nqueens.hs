@@ -21,8 +21,8 @@ rows b = length b
 
 -- TODO 03/17
 cols :: Board -> Int
-cols b
-    | length(nub b) == 1 = length b
+cols b 
+    | length(nub (map length b)) == 1 = length b
     | otherwise = 0
 
 -- TODO 04/17
@@ -54,11 +54,14 @@ rowsValid b
 
 -- TODO 09/17
 colsValid :: Board -> Bool
-colsValid b = False
+colsValid b
+    | size b == 1 = True
+    | length [ i | i <- [0 .. ((length (b!!0)) - 1)], j <- [1 ..  ((size b) - 1)], (b!!0)!!i == 'Q', (b!!0)!!i == (b!!j)!!i ] > 0 = False
+    | otherwise = colsValid (tail b)
 
 -- TODO 10/17
 diagonals :: Board -> Int
-diagonals b = 0
+diagonals b = (2 * (size b) - 1)
 
 mainDiagIndices :: Board -> Int -> [ (Int, Int) ]
 mainDiagIndices b p

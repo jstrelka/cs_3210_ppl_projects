@@ -21,9 +21,13 @@ rows b = length b
 
 -- TODO 03/17
 cols :: Board -> Int
-cols b
-    | length(nub b) == 1 = length b
+cols b 
+    | length(nub (map length b)) == 1 = length b
     | otherwise = 0
+
+---cols b
+---    | length(nub b) == 1 = length b
+---    | otherwise = 0
 
 -- TODO 04/17
 size :: Board -> Int
@@ -33,11 +37,11 @@ size b
 
 -- TODO 05/17
 queensSeq :: Seq -> Int
-queensSeq s = length(filter (=='Q') s )
+queensSeq s = length( filter (=='Q') s )
 
 -- TODO 06/17
 queensBoard :: Board -> Int
-queensBoard b = length( filter (=='Q') (unwords b))
+queensBoard b = length( filter (=='Q') (unwords b) )
 
 -- TODO 07/17
 seqValid :: Seq -> Bool
@@ -48,8 +52,20 @@ seqValid s
 -- TODO 08/17
 rowsValid :: Board -> Bool
 rowsValid b
-    | length b == 0 = True
+    | size b == 0 = True
     | seqValid (b!!((length b) - 1)) == False = False
     | otherwise = rowsValid(init b)
 
-main = print(rowsValid ["-Q--","Q---","--QQ","----"] )
+-- TODO 09/17
+colsValid :: Board -> Bool
+colsValid b
+    | size b == 1 = True
+    | length [ i | i <- [0 .. ((length (b!!0)) - 1)], j <- [1 ..  ((size b) - 1)], (b!!0)!!i == 'Q', (b!!0)!!i == (b!!j)!!i ] > 0 = False
+    | otherwise = colsValid (tail b)
+
+-- TODO 10/17
+diagonals :: Board -> Int
+diagonals b = (2 * (size b) - 1)
+
+
+main = print(diagonals ["-Q---","Q----","--QQ-","---Q-","-----"] )
